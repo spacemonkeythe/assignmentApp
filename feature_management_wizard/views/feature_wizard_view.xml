@@ -1,0 +1,46 @@
+<openerp>
+  <data>
+
+    <record id="wizard_form_view" model="ir.ui.view">
+      <field name="name">Feature Update Wizard</field>
+      <field name="model">app.feature.wizard</field>
+      <field name="arch" type="xml">
+
+        <form>
+            <div class="oe_right">
+                <button type="object" name="count_active_features"
+                        string="Count" />
+                <button type="object" name="update_features"
+                        string="Get All Features" />
+            </div>
+
+            <field name="feature_ids" />
+            <group>
+                <group><field name="new_deadline" /></group>
+                <group><field name="new_user_id" /></group>
+            </group>
+
+            <footer>
+                <button type="object" name="all_features_update"
+                    string="Update'em all" class="oe_highlight"
+                    attrs="{'invisible': [
+                        ('new_deadline','=',False),
+                        ('new_user_id','=',False)
+                        ]}"/>
+                <button special="cancel" string="Cancel"/>
+            </footer>
+        </form>
+
+      </field>
+    </record>
+
+    <act_window id="action_feature_wizard"
+        name="Update Feature"
+        src_model="app.feature"
+        res_model="app.feature.wizard"
+        view_mode="form"
+        target="new" multi="False"
+        />
+
+  </data>
+</openerp>

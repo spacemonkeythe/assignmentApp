@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+        <record model="ir.actions.act_window" id="feature_list_action">
+            <field name="name">Features</field>
+            <field name="res_model">app.feature</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">Create the first feature
+                </p>
+            </field>
+        </record>
+
+        <menuitem id="main_feature_app_menu" name="My App"/>
+
+        <menuitem id="my_app_menu" name="My App"
+                  parent="main_feature_app_menu"/>
+
+        <menuitem id="menu_feature" name="Features" parent="my_app_menu"
+                  action="feature_list_action"/>
+
+
+        <record id="view_form_feature" model="ir.ui.view">
+          <field name="name">Feature Form</field>
+          <field name="model">app.feature</field>
+          <field name="arch" type="xml">
+
+            <form>
+
+              <header>
+                <button name="toggle_done" type="object"
+                        string="Toggle Done" class="oe_highlight"/>
+                <button name="clear_done_features" type="object"
+                        string="Clear All Done" />
+              </header>
+
+              <sheet>
+                <group name="group_top">
+                  <group name="group_left">
+                    <field name="title"/>
+                    <field name="description"/>
+                  </group>
+                  <group name="group_right">
+                    <field name="is_done"/>
+                    <field name="active" readonly="1"/>
+                  </group>
+                </group>
+              </sheet>
+
+            </form>
+
+          </field>
+        </record>
+
+
+        <record id="view_tree_feature" model="ir.ui.view">
+          <field name="name">Feature Tree</field>
+          <field name="model">app.feature</field>
+          <field name="arch" type="xml">
+
+            <tree colors="gray:is_done==True">
+              <field name="title"/>
+              <field name="is_done"/>
+            </tree>
+
+          </field>
+        </record>
+
+
+        <record id="view_filter_feature" model="ir.ui.view">
+          <field name="name">Feature Filter</field>
+          <field name="model">app.feature</field>
+          <field name="arch" type="xml">
+
+            <search>
+              <field name="title"/>
+              <filter string="Not Done" domain="[('is_done','=',False)]"/>
+              <filter string="Done" domain="[('is_done','!=',False)]"/>
+            </search>
+
+          </field>
+        </record>
+
+    </data>
+</openerp>
+

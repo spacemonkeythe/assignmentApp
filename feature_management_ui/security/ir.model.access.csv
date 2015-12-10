@@ -1,0 +1,2 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_feature_management_ui_feature_management_ui,feature_management_ui.feature_management_ui,model_feature_management_ui_feature_management_ui,,1,0,0,0
